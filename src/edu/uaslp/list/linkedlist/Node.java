@@ -1,11 +1,10 @@
 package edu.uaslp.list.linkedlist;
 
-class Node {
+class Node<H>{
 
-    //package-private
-    int data;
-    Node next;
-    Node previous;
+    H data;
+    Node<H> next;
+    Node<H> previous;
 
 
 }
