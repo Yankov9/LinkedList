@@ -1,6 +1,8 @@
 package edu.uaslp.list.arraylist;
 
-public class Arraylist<T> {
+import edu.uaslp.list.List;
+
+public class Arraylist<T> implements List<T> {
 
     private static final int INITIAL_SIZE = 50;
 

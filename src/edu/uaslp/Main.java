@@ -1,5 +1,6 @@
 package edu.uaslp;
 
+import edu.uaslp.list.List;
 import edu.uaslp.list.arraylist.Arraylist;
 import edu.uaslp.list.linkedlist.LinkedList;
 
@@ -7,8 +8,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        LinkedList <Integer> libros = new LinkedList<>();
-        LinkedList <Integer> alumnos = new LinkedList<>();
+        List<Integer> libros = new LinkedList<>();
+        List<Integer> alumnos = new Arraylist<>();
 
         libros.add(1);
         libros.add(3);
@@ -17,7 +18,6 @@ public class Main {
 
         alumnos.add(22);
         alumnos.add(23);
-
 
         libros.insert(77,0);
         libros.insert(88, 1);

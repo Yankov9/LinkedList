@@ -5,6 +5,4 @@ class Node<H>{
     H data;
     Node<H> next;
     Node<H> previous;
-
-
 }
