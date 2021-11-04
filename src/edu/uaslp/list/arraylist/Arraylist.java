@@ -1,5 +1,6 @@
 package edu.uaslp.list.arraylist;
 
+import edu.uaslp.list.Iterator;
 import edu.uaslp.list.List;
 
 public class Arraylist<T> implements List<T> {
@@ -75,4 +76,7 @@ public class Arraylist<T> implements List<T> {
         array = newArray;
     }
 
+    public Iterator<T> getIterator(){
+        return new ArrayListIterator<>(this);
+    }
 }

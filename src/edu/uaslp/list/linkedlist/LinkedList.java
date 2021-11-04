@@ -1,5 +1,6 @@
 package edu.uaslp.list.linkedlist;
 
+import edu.uaslp.list.Iterator;
 import edu.uaslp.list.List;
 
 public class LinkedList <T> implements List<T> {
@@ -71,7 +72,7 @@ public class LinkedList <T> implements List<T> {
         Node<T> currentNode = head;
         int currentIndex = 0;
 
-        if (index < 0 || index >= size) {
+        if (index < 0 || index > size) {
             return;
         }
 
@@ -98,12 +99,8 @@ public class LinkedList <T> implements List<T> {
         currentNode.previous = node;
     }
 
-    public void print(){
-        Node<T> iterator = head;
-
-        while(iterator != null){
-            System.out.println(iterator.data);
-            iterator = iterator.next;
-        }
+    public Iterator<T> getIterator(){
+        return new LinkedListIterator<>(head);
     }
+
 }
