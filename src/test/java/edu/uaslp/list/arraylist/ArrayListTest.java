@@ -1,4 +1,5 @@
-package edu.uaslp.list.linkedlist;
+package edu.uaslp.list.arraylist;
+
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -7,12 +8,12 @@ import edu.uaslp.list.Iterator;
 import edu.uaslp.list.MyIndexOutOfBoundException;
 
 
-public class LinkedListTest {
+public class ArrayListTest {
 
     @Test
     public void whenListIsCreated_thenSizeIsZero() {
         // given:
-        LinkedList<Integer> list = new LinkedList<>();
+        Arraylist<Integer> list = new Arraylist<>();
 
         // when:
         int size = list.getSize();
@@ -25,7 +26,7 @@ public class LinkedListTest {
     @Test
     public void givenANewList_whenAdd_thenSizeIsOne(){
         // given:
-        LinkedList<String> list = new LinkedList<>();
+        Arraylist<String> list = new Arraylist<>();
 
         // when:
         list.add("Mario");
@@ -37,7 +38,7 @@ public class LinkedListTest {
     @Test
     public void givenAListWithOneElement_whenAdd_thenSizeIsTwo(){
         // given:
-        LinkedList<String> list = new LinkedList<>();
+        Arraylist<String> list = new Arraylist<>();
 
         list.add("Luis");
 
@@ -51,7 +52,7 @@ public class LinkedListTest {
     @Test
     public void givenAListWithThreeElements_whenGetAt_thenElementsAreReturnedSuccessfully() throws MyIndexOutOfBoundException {
         // given:
-        LinkedList<String> list = new LinkedList<>();
+        Arraylist<String> list = new Arraylist<>();
 
         list.add("Luis");
         list.add("Maria");
@@ -65,26 +66,12 @@ public class LinkedListTest {
         Assertions.assertEquals("Pancho", list.getAt(2));
     }
 
-    @Test
-    public void givenAListWithThreeElements_whenGetAtForIndex4_thenFueraDeIndiceExceptionIsThrown() throws MyIndexOutOfBoundException {
-        // given:
-        LinkedList<String> list = new LinkedList<>();
-
-        list.add("Luis");
-        list.add("Maria");
-        list.add("Pancho");
-
-        // when:
-        // then:
-        Assertions.assertEquals(3, list.getSize());
-        Assertions.assertThrows(MyIndexOutOfBoundException.class, () -> list.getAt(4));
-    }
 
 
     @Test
     public void givenAnEmptyList_whenInsert_thenElementIsInsertedSuccessfully() throws MyIndexOutOfBoundException {
         // given:
-        LinkedList<Float> list = new LinkedList<>();
+        Arraylist<Float> list = new Arraylist<>();
 
         // when:
         list.insert(3.5f, 0);
@@ -97,7 +84,7 @@ public class LinkedListTest {
     @Test
     public void whenInsertForIndexLessThanZero_thenElementIsNotInserted(){
         // given:
-        LinkedList<Float> list = new LinkedList<>();
+        Arraylist<Float> list = new Arraylist<>();
 
         // when:
         list.insert(3.5f, -1);
@@ -109,7 +96,7 @@ public class LinkedListTest {
     @Test
     public void whenInsertForIndexGreaterThanSize_thenElementIsNotInserted(){
         // given:
-        LinkedList<Float> list = new LinkedList<>();
+        Arraylist<Float> list = new Arraylist<>();
 
         // when:
         list.insert(3.5f, 1);
@@ -121,7 +108,7 @@ public class LinkedListTest {
     @Test
     public void givenAListWith2Elements_whenInsertForIndex1_thenElementIsInserted() throws MyIndexOutOfBoundException {
         // given:
-        LinkedList<String> list = new LinkedList<>();
+        Arraylist<String> list = new Arraylist<>();
 
         list.add("Primero");
         list.add("Tercero");
@@ -139,7 +126,7 @@ public class LinkedListTest {
     @Test
     public void givenAListWith2Elements_whenInsertForIndex0_thenElementIsInserted() throws MyIndexOutOfBoundException {
         // given:
-        LinkedList<String> list = new LinkedList<>();
+        Arraylist<String> list = new Arraylist<>();
 
         list.add("Segundo");
         list.add("Tercero");
@@ -157,7 +144,7 @@ public class LinkedListTest {
     @Test
     public void givenAListWith2Elements_whenInsertForIndex2_thenElementIsInserted() throws MyIndexOutOfBoundException {
         // given:
-        LinkedList<String> list = new LinkedList<>();
+        Arraylist<String> list = new Arraylist<>();
 
         list.add("Primero");
         list.add("Segundo");
@@ -175,7 +162,7 @@ public class LinkedListTest {
     @Test
     public void givenAListWith2Elements_whenDeleteForIndex0_thenElementIsDeleted() throws MyIndexOutOfBoundException {
         // given:
-        LinkedList<String> list = new LinkedList<>();
+        Arraylist<String> list = new Arraylist<>();
 
         list.add("Primero");
         list.add("Segundo");
@@ -191,7 +178,7 @@ public class LinkedListTest {
     @Test
     public void givenAListWith2Elements_whenDeleteForIndexMinus1_thenElementIsNotDeleted() throws MyIndexOutOfBoundException{
         // given:
-        LinkedList<String> list = new LinkedList<>();
+        Arraylist<String> list = new Arraylist<>();
 
         list.add("Primero");
         list.add("Segundo");
@@ -208,7 +195,7 @@ public class LinkedListTest {
     @Test
     public void givenAListWith2Elements_whenDeleteForIndex3_thenElementIsNotDeleted() throws MyIndexOutOfBoundException {
         // given:
-        LinkedList<String> list = new LinkedList<>();
+        Arraylist<String> list = new Arraylist<>();
 
         list.add("Primero");
         list.add("Segundo");
@@ -225,7 +212,7 @@ public class LinkedListTest {
     @Test
     public void givenAListWith2Elements_whenDeleteForIndex1_thenElementIsDeleted() throws MyIndexOutOfBoundException {
         // given:
-        LinkedList<String> list = new LinkedList<>();
+        Arraylist<String> list = new Arraylist<>();
 
         list.add("Primero");
         list.add("Segundo");
@@ -241,7 +228,7 @@ public class LinkedListTest {
     @Test
     public void givenAListWith3Elements_whenDeleteForIndex1_thenElementIsDeleted() throws MyIndexOutOfBoundException {
         // given:
-        LinkedList<String> list = new LinkedList<>();
+        Arraylist<String> list = new Arraylist<>();
 
         list.add("Primero");
         list.add("Segundo");
@@ -259,7 +246,7 @@ public class LinkedListTest {
     @Test
     public void givenAListWith3Elements_whenIterator_thenIteratorWorksFine(){
         // given:
-        LinkedList<String> list = new LinkedList<>();
+        Arraylist<String> list = new Arraylist<>();
 
         list.add("Primero");
         list.add("Segundo");

@@ -1,26 +1,81 @@
 package edu.uaslp.list.linkedlist;
 
+import edu.uaslp.list.MyIndexOutOfBoundException;
 import edu.uaslp.list.Iterator;
 import edu.uaslp.list.List;
 
-public class LinkedList <T> implements List<T> {
-
-    private Node<T> head;
-    private Node<T> tail;
+public class LinkedList <H> implements List<H> {
+    private Node<H> head;
+    private Node<H> tail;
     private int size;
 
-    public void add(T data) {
-        Node<T> node = new Node<>();
+    private class ForwardIterator implements Iterator<H> {
+        private Node<H> currentNode;
 
-        node.data = data;
+        ForwardIterator(){
+            currentNode = head;
+        }
+
+        @Override
+        public H next() {
+            H data = currentNode.data;
+
+            currentNode = currentNode.next;
+
+            return data;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentNode != null;
+        }
+    }
+
+    private class ReverseIterator implements Iterator<H> {
+        private Node<H> currentNode;
+
+        ReverseIterator(){
+            currentNode = tail;
+        }
+
+        @Override
+        public H next() {
+            H data = currentNode.data;
+
+            currentNode = currentNode.previous;
+
+            return data;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentNode != null;
+        }
+    }
+
+    public Iterator<H> getIterator(){
+        return new ForwardIterator();
+    }
+
+    public Iterator<H> getReverseIterator(){
+        return new ReverseIterator();
+    }
+
+    public void add(H dato) {
+        Node<H> node = new Node<>();
+
+        node.data = dato;
 
         if (head == null) {
             head = node;
         }
+
         node.previous = tail;
+
         if (tail != null) {
             tail.next = node;
         }
+
         tail = node;
         size++;
     }
@@ -29,48 +84,53 @@ public class LinkedList <T> implements List<T> {
         return size;
     }
 
-    public T getAt(int index) {
+    public H getAt(int index) throws MyIndexOutOfBoundException {
         int counter = 0;
-        Node<T> it = head;
+        Node<H> it = head;
+
+        if(index < 0 || index >= size){
+            throw new MyIndexOutOfBoundException();
+        }
 
         while (counter < index && it != null) {
             counter++;
             it = it.next;
         }
 
-        return it == null ? null : it.data;
+        return it.data;
     }
 
     public void delete(int index) {
-        Node<T> currentNode = head;
-        int currentIndex = 0;
+        int counter = 0;
+        Node<H> iterator = head;
 
         if (index < 0 || index >= size) {
             return;
         }
 
-        while (currentIndex < index && currentNode != null) {
-            currentNode = currentNode.next;
-            currentIndex++;
+        while (counter < index && iterator != null) {
+            iterator = iterator.next;
+            counter++;
         }
 
-        if (currentNode.previous == null) {
-            head = currentNode.next;
+        if (iterator.previous == null) {
+            head = iterator.next;
         } else {
-            currentNode.previous.next = currentNode.next;
+            iterator.previous.next = iterator.next;
         }
 
-        if (currentNode.next == null) {
-            tail = currentNode.previous;
+        if (iterator.next == null) {
+            tail = iterator.previous;
         } else {
-            currentNode.next.previous = currentNode.previous;
+            iterator.next.previous = iterator.previous;
         }
+
         size--;
     }
 
-    public void insert(T data, int index) {
-        Node<T> currentNode = head;
-        int currentIndex = 0;
+    public void insert(H data, int index){
+        int counter = 0;
+        Node<H> iterator = head;
 
         if (index < 0 || index > size) {
             return;
@@ -80,27 +140,24 @@ public class LinkedList <T> implements List<T> {
             add(data);
             return;
         }
-        while (currentIndex < index && currentNode != null) {
-            currentNode = currentNode.next;
-            currentIndex++;
+
+        while (counter < index && iterator != null) {
+            iterator = iterator.next;
+            counter++;
         }
 
-        Node<T> node = new Node<>();
+        Node<H> node = new Node<>();
 
         node.data = data;
-        node.next = currentNode;
-        node.previous = currentNode.previous;
+        node.next = iterator;
+        node.previous = iterator.previous;
 
-        if(currentNode.previous == null){
+        if(iterator.previous == null){
             head = node;
-        }else{
-            currentNode.previous.next = node;
+        } else {
+            iterator.previous.next = node;
         }
-        currentNode.previous = node;
+        iterator.previous = node;
+        size++;
     }
-
-    public Iterator<T> getIterator(){
-        return new LinkedListIterator<>(head);
-    }
-
 }

@@ -1,43 +1,34 @@
 package edu.uaslp;
 
-import edu.uaslp.list.Iterator;
+
+import edu.uaslp.list.MyIndexOutOfBoundException;
 import edu.uaslp.list.List;
-import edu.uaslp.list.arraylist.Arraylist;
 import edu.uaslp.list.linkedlist.LinkedList;
 
 public class Main {
 
+
     public static void main(String[] args) {
 
+        List<String> alumnos = new LinkedList<>();
 
-        List<Integer> libros = new LinkedList<>();
-        List<Integer> alumnos = new LinkedList<>();
+        alumnos.add("Ivan");
+        alumnos.add("Israel");
 
 
-        libros.add(1);
-        libros.add(3);
-        libros.add(43);
-        libros.add(32);
+        try{
+            String nombre = alumnos.getAt(0);
 
-        alumnos.add(22);
-        alumnos.add(23);
+            System.out.println(nombre);
 
-        libros.insert(77,0);
-        libros.insert(88, 1);
+            nombre = alumnos.getAt(10);
 
-        libros.delete(2);
-
-        System.out.println("Libros size:" + libros.getSize());
-        System.out.println("Alumnos size:" + alumnos.getSize());
-
-        System.out.println("Datos de la iteracion: ");
-
-        Iterator<Integer> it = libros.getIterator();
-
-        while (it.hasNext()) {
-            int dato = it.next();
-            System.out.println(dato);
+            System.out.println(nombre);
+        } catch(MyIndexOutOfBoundException ex){
+            System.out.println("No pude obtener el nombre");
         }
 
+
     }
+
 }
